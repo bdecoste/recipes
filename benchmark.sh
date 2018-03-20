@@ -2,7 +2,7 @@
 
 set -e
 
-if [ "${CLONE}" ]; then
+if [ "${FETCH}" ]; then
   if [ ! -d "benchmark" ]; then
     export COMMIT="e1c3a83b8197cf02e794f61228461c27d4e78cfb"  # benchmark @ Jan 11, 2018
     git clone https://github.com/google/benchmark.git

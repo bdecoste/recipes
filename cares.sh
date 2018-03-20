@@ -9,13 +9,17 @@ VERSION=cares-1_13_0
 CPPFLAGS="$(for f in $CXXFLAGS; do if [[ $f =~ -D.* ]]; then echo $f; fi; done)"
 CFLAGS="$(for f in $CXXFLAGS; do if [[ ! $f =~ -D.* ]]; then echo $f; fi; done)"
 
-#wget -O c-ares-"$VERSION".tar.gz https://github.com/c-ares/c-ares/archive/"$VERSION".tar.gz
-#tar xf c-ares-"$VERSION".tar.gz
+if [ "${FETCH}" ]; then
+  if [ ! -d "c-ares-$VERSION" ]; then
+    wget -O c-ares-"$VERSION".tar.gz https://github.com/c-ares/c-ares/archive/"$VERSION".tar.gz
+    tar xf c-ares-"$VERSION".tar.gz
+  fi
+else
+  cp -rf ${RPM_BUILD_DIR}/istio-proxy/c-ares-"$VERSION" .
 
-cp -rf ${RPM_BUILD_DIR}/istio-proxy/c-ares-"$VERSION" .
-
-cd c-ares-"$VERSION"
-./buildconf
-./configure --prefix="$THIRDPARTY_BUILD" --enable-shared=no --enable-lib-only \
-  --enable-debug --enable-optimize
-make V=1 install
+  cd c-ares-"$VERSION"
+  ./buildconf
+  ./configure --prefix="$THIRDPARTY_BUILD" --enable-shared=no --enable-lib-only \
+    --enable-debug --enable-optimize
+  make V=1 install
+fi
