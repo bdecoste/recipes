@@ -15,5 +15,7 @@ else
   cd gperftools-"$VERSION"
 
   LDFLAGS="-lpthread" ./configure --prefix="$THIRDPARTY_BUILD" --enable-shared=no --enable-frame-pointers --disable-libunwind
+  aclocal
+  automake
   make V=1 install
 fi

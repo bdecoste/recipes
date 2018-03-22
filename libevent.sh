@@ -13,6 +13,8 @@ else
   cp -rf ${RPM_BUILD_DIR}/istio-proxy/libevent-"$VERSION" .
 
   cd libevent-"$VERSION"
+  aclocal
+  automake
   ./configure --prefix="$THIRDPARTY_BUILD" --enable-shared=no --disable-libevent-regress --disable-openssl
   make V=1 install
 fi

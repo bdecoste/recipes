@@ -13,6 +13,8 @@ else
   cp -rf ${RPM_BUILD_DIR}/istio-proxy/nghttp2-"$VERSION" .
 
   cd nghttp2-"$VERSION"
+  aclocal
+  automake
   ./configure --prefix="$THIRDPARTY_BUILD" --enable-shared=no --enable-lib-only
   make V=1 install
 fi
