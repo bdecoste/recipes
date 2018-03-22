@@ -13,6 +13,8 @@ else
   cp -rf ${RPM_BUILD_DIR}/istio-proxy/zlib-"$VERSION" .
 
   cd zlib-"$VERSION"
+  aclocal
+  automake
   ./configure --prefix="$THIRDPARTY_BUILD"
   make V=1 install
 fi
