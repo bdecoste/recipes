@@ -18,6 +18,7 @@ else
   cp -rf ${RPM_BUILD_DIR}/istio-proxy/c-ares-"$VERSION" .
 
   cd c-ares-"$VERSION"
+  aclocal
   ./buildconf
   ./configure --prefix="$THIRDPARTY_BUILD" --enable-shared=no --enable-lib-only \
     --enable-debug --enable-optimize
